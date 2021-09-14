@@ -48,8 +48,5 @@
             <param name="joint_controller_topic" value="$(arg joint_controller_topic)" />
         </node>
     </group>
-
-    <arg if="$(eval arg('robot_name') == '/')"  name="frame_prefix" value="" />
-    <arg unless="$(eval arg('robot_name') == '/')" name="frame_prefix" value="$(arg robot_name)/" />
     
 </launch>
