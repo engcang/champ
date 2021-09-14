@@ -2,3 +2,6 @@
 	path = champ/include/champ
 	url = https://github.com/chvmp/libchamp
 	branch = master
+[submodule "champ_teleop"]
+	path = champ_teleop
+	url = git@github.com:chvmp/champ_teleop
