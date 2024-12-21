@@ -1,23 +1,29 @@
-
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.5)
 project(champ)
 
-find_package(catkin 
-  REQUIRED 
-  COMPONENTS
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+
+include_directories(include
+  ${rclcpp_INCLUDE_DIRS}
+)
+set(LIBRARY_NAME "${PROJECT_NAME}_lib")
+
+add_library(${LIBRARY_NAME} INTERFACE)
+
+target_include_directories(${LIBRARY_NAME} INTERFACE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
 )
 
-catkin_package(
-  INCLUDE_DIRS include include/${PROJECT_NAME}
+target_link_libraries(${LIBRARY_NAME} INTERFACE
+  ${rclcpp_LIBRARIES}
 )
 
-include_directories(
-  include/${PROJECT_NAME}
-  ${catkin_INCLUDE_DIRS}
+install(DIRECTORY include/
+  DESTINATION include
 )
 
-install(DIRECTORY include/${PROJECT_NAME}
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-  FILES_MATCHING PATTERN "*.h"
-  PATTERN ".git" EXCLUDE
-)
+#ament_export_libraries(${PROJECT_NAME})
+ament_export_include_directories(include)
+ament_package()
