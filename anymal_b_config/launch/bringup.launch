@@ -28,10 +28,7 @@
         </node>
         
         <!-- ==================== 3) Teleop ==================== -->
-        <include file="$(find champ_teleop)/launch/teleop.launch">
-            <arg name="joy"  default="true"/>
-            <arg name="dev"  default="/dev/input/js1"/>
-        </include>
+        <include file="$(find champ_teleop)/launch/teleop.launch"/>
 
     </group>
   
